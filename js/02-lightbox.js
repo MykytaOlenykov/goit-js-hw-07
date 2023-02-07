@@ -18,14 +18,6 @@ document.querySelector("p").after(galleryDivEl);
 
 galleryDivEl.innerHTML = createMarkupGalleryItems(galleryItems);
 
-const linksImagesEl = galleryDivEl.querySelectorAll(".gallery__item");
-
-linksImagesEl.forEach((link) =>
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-  })
-);
-
 const gallery = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
