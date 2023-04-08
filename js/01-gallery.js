@@ -47,20 +47,24 @@ function onToggleModal(link) {
     <img src="${link}" width="800" height="600">
 `,
     {
-      onShow: () => {
-        window.addEventListener("keydown", onCloseModal);
+      handler: null,
+
+      onShow() {
+        this.handler = onCloseModal.bind(instance);
+        window.addEventListener("keydown", this.handler);
       },
-      onClose: () => {
-        window.removeEventListener("keydown", onCloseModal);
+
+      onClose() {
+        window.removeEventListener("keydown", this.handler);
       },
     }
   );
 
   instance.show();
+}
 
-  function onCloseModal(e) {
-    if (e.code === "Escape") {
-      instance.close();
-    }
+function onCloseModal(e) {
+  if (e.code === "Escape") {
+    this.close();
   }
 }
